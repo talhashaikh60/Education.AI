@@ -41,6 +41,23 @@ def csv_to_json(csv_file_path, json_file_path):
     with open(json_file_path, mode='w') as json_file:
         json_file.write(json.dumps(data, indent=4))
 
-# Call the csv_to_json function
-#csv_to_json("Students.csv", "output.json")
-send_json_to_couchdb("output.json")
+import argparse
+
+# Create the parser
+parser = argparse.ArgumentParser(description="Convert CSV to JSON or JSON to CSV")
+
+# Add the arguments
+parser.add_argument('--action', choices=['csv2json', 'json2csv'], help='The action to perform')
+
+# Parse the arguments
+args = parser.parse_args()
+
+# Perform the action
+if args.action == 'csv2json':
+    print("Converting CSV to JSON...")
+    csv_to_json("Students.csv", "output.json")
+
+elif args.action == 'json2csv':
+    print("Converting JSON to CSV...")
+    # Add your JSON to CSV conversion code here
+    send_json_to_couchdb("output.json")
