@@ -22,7 +22,7 @@ def send_json_to_couchdb(json_file_path):
         response = requests.put(f"{full_url}/{key}", data=json.dumps(data[key]), headers=hs)
         print(response.text)
 
-
+# Function to convert CSV to JSON
 def csv_to_json(csv_file_path, json_file_path):
     # Create a dictionary
     data = {}
